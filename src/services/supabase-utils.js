@@ -30,3 +30,22 @@ export async function getWatchList() {
   
   return data;
 }
+
+export async function addToWatchList(movie) {
+  const response = await client
+    .from('movies')
+    .insert(movie);
+  
+  return response;
+}
+
+export async function removeWatched(api_id) {
+  const { data } = await client 
+    .from('movies')  
+    .delete()
+    .match({ api_id })
+    .single();
+  
+  return data;
+}
+  

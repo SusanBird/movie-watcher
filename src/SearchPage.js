@@ -30,6 +30,13 @@ export default function SearchPage() {
     searchWatchList();
   }, []);
 
+  function isOnWatchList(api_id) {
+    const movieMatch = watchList.find(
+      (watchListItem) => Number(watchListItem.api_id) === Number(api_id)
+    );
+
+    return Boolean(movieMatch);
+  }
 
   return (
     <div>
@@ -44,7 +51,7 @@ export default function SearchPage() {
       </form>
       <div className='movie-list'>
         {movies.map((movie, i) => 
-          <MovieItem key={movie.title + i} {...movie} watchList={watchList} searchWatchList={searchWatchList} />
+          <MovieItem key={movie.title + i} {...movie} isOnWatchList={isOnWatchList} searchWatchList={searchWatchList} movie={movie}/>
         )}
       </div>
     </div>

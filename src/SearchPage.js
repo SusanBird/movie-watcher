@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieItem from './MovieItem';
 import { searchMovies } from './services/fetch-utils';
 import { logout } from './services/supabase-utils';
+import { getWatchList } from './services/supabase-utils';
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [watchList, setWatchList] = useState([]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,6 +19,17 @@ export default function SearchPage() {
 
     setMovies(movieData.results);
   }
+
+  async function searchWatchList() {
+    const onWatchList = await getWatchList();
+
+    setWatchList(onWatchList);
+  }
+
+  useEffect(() => {
+    searchWatchList();
+  }, []);
+
 
   return (
     <div>
@@ -31,7 +44,7 @@ export default function SearchPage() {
       </form>
       <div className='movie-list'>
         {movies.map((movie, i) => 
-          <MovieItem key={movie.title + i} {...movie} />
+          <MovieItem key={movie.title + i} {...movie} watchList={watchList} searchWatchList={searchWatchList} />
         )}
       </div>
     </div>

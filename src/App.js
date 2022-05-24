@@ -4,12 +4,15 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import WatchListPage from './WatchListPage';
+import SearchPage from './SearchPage';
+import AuthPage from './AuthPage';
 
 function App() {
   return (
     <Router> 
       <div className="App">
-        <switch>
+        <Switch>
           <Route path="/watch-list">
             <WatchListPage />
           </Route>
@@ -19,7 +22,7 @@ function App() {
           <Route path="/">
             <AuthPage />
           </Route>
-        </switch>
+        </Switch>
       </div>
     </Router>
   );

@@ -32,6 +32,29 @@ export default function AuthPage({ setCurrentUser }) {
   }
 
   return (
-    <div>AuthPage</div>
+    <div className='auth-page'>
+      <form onSubmit={handleSignUp}>
+        <label>
+          <p>Email</p>
+          <input value={signUpEmail} onChange={e => setSignUpEmail(e.target.value)} />
+        </label>
+        <label>
+          <p>Password</p>
+          <input value={signUpPassword} type='password' onChange={e => setSignUpPassword(e.target.value)} />
+        </label>
+        <button>Sign Up</button>
+      </form>
+      <form onSubmit={handleSignIn}>
+        <label>
+          <p>Email</p>
+          <input value={signInEmail} onChange={e => setSignInEmail(e.target.value)} />
+        </label>
+        <label>
+          <p>Password</p>
+          <input value={signInPassword} type='password' onChange={e => setSignInPassword(e.target.value)} />
+        </label>
+        <button>Sign In</button>
+      </form>
+    </div>
   );
 }

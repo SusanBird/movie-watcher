@@ -23,9 +23,7 @@ export default function SearchPage() {
       <header>
         <a href="./search">Search</a>
         <a href="./watch-list">Watch List</a>
-        <a href="./" onClick={logout}>
-          Logout
-        </a>
+        <a href="./" onClick={logout}>Logout</a>
       </header>
       <form onSubmit={handleSubmit}>
         <input onChange={e => setQuery(e.target.value)} />
